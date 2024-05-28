@@ -1,12 +1,12 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      int_kind_c.f03
+! @file      int_kind_2008.f08
 ! @author    Mitch Richling http://www.mitchr.me/
-! @brief     How to use ISO_C_BINDING to declare fixed size integers.@EOL
-! @std       F2003
-! @see       int_kind_2008.f08 int_kind_c.f03 int_kind.f95
-! @copyright 
+! @brief     Better ways to select integer KINDs in fortran 2008.@EOL
+! @std       F2008
+! @see       int_kind_c.f03 int_kind.f95
+! @copyright
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All
 !  rights reserved.
@@ -31,43 +31,49 @@
 !  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 !  POSSIBILITY OF SUCH DAMAGE.
 !  @endparblock
-! @filedetails   
+! @filedetails
 !
-!  The iso_c_binding module contains parameters specifying integer kinds that are compatable with C types.
+!  ISO_FORTRAN_ENV has handy kinds for integer kinds.  Note that ISO_C_BINDING has similar types for C compatibility.
+!  GNU Extension: INT128
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################
-program int_kind_c
-  use, intrinsic:: iso_c_binding, only: c_int8_t, c_int16_t, c_int32_t, c_int64_t
+program int_kind_2008
+  use, intrinsic:: iso_fortran_env, only: int8, int16, int32, int64
   implicit none
 
-  integer(kind=c_int8_t)  :: i8
-  integer(kind=c_int16_t) :: i16
-  integer(kind=c_int32_t) :: i32
-  integer(kind=c_int64_t) :: i64
+  integer(kind=int8)  :: i8
+  integer(kind=int16) :: i16
+  integer(kind=int32) :: i32
+  integer(kind=int64) :: i64
 
-  print *, 'kind=c_int8_t'
-  print *, '  Number of significant digits', digits(i8)      
-  print *, '  Largest number              ', huge(i8)        
-  print *, '  Base of the model           ', radix(i8)       
-  print *, '  Decimal exponent range      ', range(i8)       
+  ! A type is supported if it is non-negative (Fortran 2008)
+  if (int8 < 0) then
+    print *, 'ERROR: INT8 Not supported!'
+  end if
 
-  print *, 'kind=c_int16_t'
-  print *, '  Number of significant digits', digits(i16)         
-  print *, '  Largest number              ', huge(i16)       
-  print *, '  Base of the model           ', radix(i16)      
-  print *, '  Decimal exponent range      ', range(i16)      
+  print *, 'KIND=INT8'
+  print *, '  Number of significant digits', digits(i8)
+  print *, '  LARGEST NUMBER              ', huge(i8)
+  print *, '  BASE OF THE MODEL           ', radix(i8)
+  print *, '  DECIMAL EXPONENT RANGE      ', range(i8)
 
-  print *, 'kind=c_int32_t'
-  print *, '  Number of significant digits', digits(i32)         
-  print *, '  Largest number              ', huge(i32)       
-  print *, '  Base of the model           ', radix(i32)      
-  print *, '  Decimal exponent range      ', range(i32)      
+  print *, 'KIND=INT16'
+  print *, '  NUMBER OF SIGNIFICANT DIGITS', digits(i16)
+  print *, '  LARGEST NUMBER              ', huge(i16)
+  print *, '  BASE OF THE MODEL           ', radix(i16)
+  print *, '  DECIMAL EXPONENT RANGE      ', range(i16)
 
-  print *, 'kind=c_int64_t'
-  print *, '  Number of significant digits', digits(i64)         
-  print *, '  Largest number              ', huge(i64)       
-  print *, '  Base of the model           ', radix(i64)      
-  print *, '  Decimal exponent range      ', range(i64)      
+  print *, 'KIND=INT32'
+  print *, '  NUMBER OF SIGNIFICANT DIGITS', digits(i32)
+  print *, '  LARGEST NUMBER              ', huge(i32)
+  print *, '  BASE OF THE MODEL           ', radix(i32)
+  print *, '  DECIMAL EXPONENT RANGE      ', range(i32)
 
-end program int_kind_c
+  print *, 'KIND=INT64'
+  print *, '  NUMBER OF SIGNIFICANT DIGITS', digits(i64)
+  print *, '  LARGEST NUMBER              ', huge(i64)
+  print *, '  BASE OF THE MODEL           ', radix(i64)
+  print *, '  DECIMAL EXPONENT RANGE      ', range(i64)
+
+end program int_kind_2008
