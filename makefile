@@ -9,21 +9,29 @@
 ################################################################################################################################################################
 # GCC
 FC       = gfortran
-FFLAGS   = -Wall -Wextra
+FFLAGS   = -pedantic -Wall -Wextra
 %: %.f90
-	 $(FC) -pedantic $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $? -o $@	
+	 $(FC) $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $? -o $@	
+
+################################################################################################################################################################
+# LLVM FLANG -- At the time of this witeing, flang dosen't suport anyting but F2018 and has limited command line options
+# FC       = flang
+# FFLAGS   = -pedantic -Werror -std=f2018
+# %: %.f90
+# 	 $(FC) $(FFLAGS) $? -o $@	
 
 ################################################################################################################################################################
 # INTEL
-# FC = ifort
+# FC = ifx
+# FFLAGS = -warn:all
 # %: %.f90
-#	 $(FC) -pedantic $(shell sed -nr 's/^! @std.* F(.+)/-std=f\1 -e\1/p' $<)  $(FFLAGS) $? -o $@	
+# 	 intel-dev-msys2-wrapper.sh $(FC) $(shell sed -nr 's/^! @std.* F[0-9]*([0-9][0-9])/-stand:f\1/p' $<)  $(FFLAGS) $? -o $@	
 
 # Put targets here
 TARGETS  = func_opt_arg func_recursive overloading 
-TARGETS += prog_struct
+#TARGETS += prog_struct
 TARGETS += case_statement loop_do loop_forall loopless_where
-TARGETS += real_kinds real_kinds_ieee int_kind int_kind_c int_kind_2008 real_kinds_2008
+TARGETS += real_kinds real_kinds_ieee int_kind int_kind_c int_kind_2008 real_kinds_2008 
 TARGETS += no_advance_print format  
 TARGETS += proc_env proc_args 
 TARGETS += array_dynamic array_sections array_elemental
@@ -35,10 +43,9 @@ all : $(TARGETS)
 	@echo Make Complete
 
 clean :
-	rm -rf a.out *~ *.bak *.mod *.obj *.o *.exe $(TARGETS)
+	rm -rf a.out *~ *.bak *.mod *.obj *.o *.exe *__genmod.f90 $(TARGETS)
 	@echo Clean Complete
 
 prog_struct : mod_struct.f90 prog_struct.f90 
-	$(FC) -pedantic $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $(TARGET_ARCH) $? -o $@	
 
 
