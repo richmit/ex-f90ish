@@ -43,28 +43,28 @@ program proc_args
   
   call get_command(argument, length, ierror)
   if(ierror <= 0) then
-     write (*,*) 'Entire command line: ', argument(1:min(slen, length))
+     print *, 'Entire command line: ', argument(1:min(slen, length))
      if(ierror < 0) then
-        write (*,*) '   Length was:      ', length, ' ---- TOO LONG FOR VARIABLE!'
+        print *, '   Length was:      ', length, ' ---- TOO LONG FOR VARIABLE!'
      else 
-        write (*,*) '   Length was:      ', length
+        print *, '   Length was:      ', length
     end if
   else
-     write (*,*) 'Command line could not be retrieved'
+     print *, 'Command line could not be retrieved'
   end if
 
   do i = 1,command_argument_count()
      call get_command_argument(i, argument, length, ierror)
      if(ierror <= 0) then
-        write (*,*) 'Argument:      ', argument(1:min(slen, length))
-        write (*,*) '   Arg Number: ', i
+        print *, 'Argument:      ', argument(1:min(slen, length))
+        print *, '   Arg Number: ', i
         if(ierror < 0) then
-           write (*,*) '   Length was: ', length, ' ---- TOO LONG FOR VARIABLE!'
+           print *, '   Length was: ', length, ' ---- TOO LONG FOR VARIABLE!'
         else 
-           write (*,*) '   Length was: ', length
+           print *, '   Length was: ', length
         end if
      else
-        write (*,*) 'Argument ', i, 'could not be retrieved'
+        print *, 'Argument ', i, 'could not be retrieved'
      end if
   end do
 

@@ -40,9 +40,9 @@ program case_statement
 
   select case(.true.)
   case(.true.)
-     write (*,*) "LOGICAL CASE: .TRUE."
+     print *, "LOGICAL CASE: .TRUE."
   case(.false.)
-     write (*,*) "LOGICAL CASE: .FALSE."
+     print *, "LOGICAL CASE: .FALSE."
   end select
 
   select case('AB')

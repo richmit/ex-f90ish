@@ -43,14 +43,14 @@ program proc_env
   
   call get_environment_variable('PATH', argument, length, ierror, .FALSE.)
   if(ierror <= 0) then
-     write (*,*) 'PATH:           ', argument(1:min(slen, length))
+     print *, 'PATH:           ', argument(1:min(slen, length))
      if(ierror < 0) then
-        write (*,*) '   PATH length: ', length, ' ---- too long for variable!'
+        print *, '   PATH length: ', length, ' ---- too long for variable!'
      else 
-        write (*,*) '   PATH length: ', length
+        print *, '   PATH length: ', length
      end if
   else
-     write (*,*) 'PATH could not be retrieved'
+     print *, 'PATH could not be retrieved'
   end if
 
 end program proc_env

@@ -39,13 +39,13 @@ program loop_do
   integer :: i, j
   
   ! end do is finally part of the language.  i MUST be an integer.
-  write (*,*) 'Example Loop 1'
+  print *, 'Example Loop 1'
   do i=1,20,2
-     write (*,*) '  PRE-CYCLE: ', i
+     print *, '  PRE-CYCLE: ', i
      if( (i .gt. 2) .and. (i .lt. 12) ) then
         cycle
      end if
-     write (*,*) ' POST-CYCLE: ', i
+     print *, ' POST-CYCLE: ', i
      if(i .gt. 14) then
         exit
      end if

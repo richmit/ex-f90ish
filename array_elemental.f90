@@ -40,17 +40,17 @@ program array_elemental
   integer, dimension(4) :: i = (/ 1, -2, 3, -4 /) 
   integer, dimension(4) :: j = (/ 4,  3, 2,  1 /) 
 
-  print *
+  print *, 'i & j initial values'
   print '(a,4i4)', '        i=', i
   print '(a,4i4)', '        j=', j
   call swap(i, j)                            ! swap is a home grown elemental subroutine
-  print *
+  print *, 'i & j after swap'
   print '(a,4i4)', '        i=', i
   print '(a,4i4)', '        j=', j
-  print *
+  print *, 'i squared'
   print '(a,4i4)', 'square(i)=', square(i)   ! square is a home grown elemental function
   print '(a,4i4)', '        i=', i
-  print *
+  print *, 'j elementwise absolute value'
   print '(a,4i4)', '  iabs(j)=', iabs(j)     ! IABS is a built in, "intrinsic" in Fortran speak, elemental function
   print '(a,4i4)', '        j=', j
 
