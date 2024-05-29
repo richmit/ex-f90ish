@@ -50,7 +50,7 @@ program loop_forall
   real, dimension(5)   :: x = (/1,2,3,4,5/)
   real, dimension(3)   :: y = (/1,2,3/)
   real, dimension(3,2) :: a = 0
-  integer              :: i
+  integer              :: i, j
 
   ! forall 'statement' syntax 
   print *, 'FORALL Example 1'
