@@ -11,23 +11,13 @@
 FC       = gfortran
 FFLAGS   = -Wall -Wextra
 %: %.f90
-	 $(FC)                       $(FFLAGS) $(TARGET_ARCH) $< -o $@
-%: %.f95
-	 $(FC) -pedantic --std=f95   $(FFLAGS) $(TARGET_ARCH) $< -o $@
-%: %.f03
-	 $(FC) -pedantic --std=f2003 $(FFLAGS) $(TARGET_ARCH) $< -o $@
-%: %.f08
-	 $(FC) -pedantic --std=f2008 $(FFLAGS) $(TARGET_ARCH) $< -o $@
+	 $(FC) -pedantic $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $? -o $@	
 
 ################################################################################################################################################################
 # INTEL
 # FC = ifort
 # %: %.f90
-# 	rm -f tmp.f90; ln -s $< tmp.f90; $(FC) $(FFLAGS)             tmp.f90 -o $@; rm -f tmp.f90
-# %: %.f95
-# 	rm -f tmp.f90; ln -s $< tmp.f90; $(FC) $(FFLAGS) -std95 -e95 tmp.f90 -o $@; rm -f tmp.f90
-# %: %.f03
-# 	rm -f tmp.f90; ln -s $< tmp.f90; $(FC) $(FFLAGS) -std03 -e03 tmp.f90 -o $@; rm -f tmp.f90
+#	 $(FC) -pedantic $(shell sed -nr 's/^! @std.* F(.+)/-std=f\1 -e\1/p' $<)  $(FFLAGS) $? -o $@	
 
 # Put targets here
 TARGETS  = func_opt_arg func_recursive overloading 
@@ -45,11 +35,10 @@ all : $(TARGETS)
 	@echo Make Complete
 
 clean :
-	rm -rf a.out *~ *.bak *.mod *.o *.exe $(TARGETS)
+	rm -rf a.out *~ *.bak *.mod *.obj *.o *.exe $(TARGETS)
 	@echo Clean Complete
 
-prog_struct : mod_struct.f95 prog_struct.f95 
-		 $(FC) -pedantic --std=f95   $(FFLAGS) $(TARGET_ARCH) mod_struct.f95 prog_struct.f95 -o $@
-
-real_kinds: real_kinds.f90
+prog_struct : mod_struct.f90 prog_struct.f90 
 	$(FC) -pedantic $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $(TARGET_ARCH) $? -o $@	
+
+
