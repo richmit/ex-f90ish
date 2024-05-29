@@ -7,19 +7,6 @@
 # @Std       GNU Make
 
 ################################################################################################################################################################
-# Sun Compiler
-# FC       = sunf95
-# FFLAGS   = -w4 -errtags=yes -erroff=COMMENT_0399,CAUTION_1103_SUN
-# %: %.f90
-# 	 $(FC)  $(FFLAGS) $(TARGET_ARCH) $< -o $@
-# %: %.f95
-# 	 $(FC)  $(FFLAGS) $(TARGET_ARCH) $< -o $@
-# %: %.f03
-# 	 $(FC)  $(FFLAGS) $(TARGET_ARCH) $< -o $@
-# %: %.f08
-# 	 $(FC)  $(FFLAGS) $(TARGET_ARCH) $< -o $@
-
-################################################################################################################################################################
 # GCC
 FC       = gfortran
 FFLAGS   = -Wall -Wextra
@@ -44,7 +31,7 @@ FFLAGS   = -Wall -Wextra
 
 # Put targets here
 TARGETS  = func_opt_arg func_recursive overloading 
-#TARGETS += prog_struct
+TARGETS += prog_struct
 TARGETS += case_statement loop_do loop_forall loopless_where
 TARGETS += real_kinds real_kinds_ieee int_kind int_kind_c int_kind_2008 real_kinds_2008
 TARGETS += no_advance_print format  
@@ -63,3 +50,6 @@ clean :
 
 prog_struct : mod_struct.f95 prog_struct.f95 
 		 $(FC) -pedantic --std=f95   $(FFLAGS) $(TARGET_ARCH) mod_struct.f95 prog_struct.f95 -o $@
+
+real_kinds: real_kinds.f90
+	$(FC) -pedantic $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $(TARGET_ARCH) $? -o $@	

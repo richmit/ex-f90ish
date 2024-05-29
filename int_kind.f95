@@ -1,51 +1,78 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  @file      int_kind.f95
-!  @Author    Mitch Richling<https://www.mitchr.me>
-!  @Copyright Copyright 2012 by Mitch Richling.  All rights reserved.
-!  @brief     Typical ways to select integer KINDs.@EOL
-!  @Keywords  none
-!  @Std       F95
-!             
+! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
+!!
+! @file      int_kind.f95
+! @author    Mitch Richling http://www.mitchr.me/
+! @brief     Typical ways to select integer KINDs.@EOL
+! @std       F95 
+! @see       int_kind_2008.f08 int_kind_c.f03
+! @copyright 
+!  @parblock
+!  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All
+!  rights reserved.
+!
+!  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
+!  conditions are met:
+!
+!  1. Redistributions of source code must retain the above copyright notice, this list of conditions, and the following
+!     disclaimer.
+!
+!  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions, and the following
+!     disclaimer in the documentation and/or other materials provided with the distribution.
+!
+!  3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products
+!     derived from this software without specific prior written permission.
+!
+!  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+!  BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+!  SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+!  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+!  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+!  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+!  POSSIBILITY OF SUCH DAMAGE.
+!  @endparblock
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
-PROGRAM int_kind
-  IMPLICIT NONE
+!##################################################################################################################################
+program int_kind
+  implicit none
                                                          ! | typical 32-bit C | C99     | bytes |    N=largest number | log_10(N) |
                                                          ! |------------------+---------+-------+---------------------+-----------|
-  INTEGER, PARAMETER :: int8  = SELECTED_REAL_KIND(R=4)  ! | signed char      | int8_t  |     1 |                 127 |  4.844187 |
-  INTEGER, PARAMETER :: int16 = SELECTED_REAL_KIND(R=10) ! | signed short     | int16_t |     2 |               32767 | 10.397177 |
-  INTEGER, PARAMETER :: int32 = SELECTED_REAL_KIND(R=21) ! | signed int       | int32_t |     4 |          2147483647 | 21.487562 |
-  INTEGER, PARAMETER :: int64 = SELECTED_REAL_KIND(R=43) ! | signed long      | int64_t |     8 | 9223372036854775807 | 43.668272 |
+  integer, parameter :: int8  = selected_real_kind(r=4)  ! | signed char      | int8_t  |     1 |                 127 |  4.844187 |
+  integer, parameter :: int16 = selected_real_kind(r=10) ! | signed short     | int16_t |     2 |               32767 | 10.397177 |
+  integer, parameter :: int32 = selected_real_kind(r=21) ! | signed int       | int32_t |     4 |          2147483647 | 21.487562 |
+  integer, parameter :: int64 = selected_real_kind(r=43) ! | signed long      | int64_t |     8 | 9223372036854775807 | 43.668272 |
 
-  integer(KIND=int8)  :: i8
-  integer(KIND=int16) :: i16
-  integer(KIND=int32) :: i32
-  integer(KIND=int64) :: i64
+  integer(kind=int8)  :: i8
+  integer(kind=int16) :: i16
+  integer(kind=int32) :: i32
+  integer(kind=int64) :: i64
 
-  WRITE (*,*) 'KIND=int1'
-  WRITE (*,*) '  Number of significant digits', DIGITS(i8)      
-  WRITE (*,*) '  Largest number              ', HUGE(i8)        
-  WRITE (*,*) '  Base of the model           ', RADIX(i8)       
-  WRITE (*,*) '  Decimal exponent range      ', RANGE(i8)       
+  print *, 'kind=int1'
+  print *, '  Number of significant digits', digits(i8)      
+  print *, '  Largest number              ', huge(i8)        
+  print *, '  Base of the model           ', radix(i8)       
+  print *, '  Decimal exponent range      ', range(i8)       
 
-  WRITE (*,*) 'KIND=int2'
-  WRITE (*,*) '  Number of significant digits', DIGITS(i16)         
-  WRITE (*,*) '  Largest number              ', HUGE(i16)       
-  WRITE (*,*) '  Base of the model           ', RADIX(i16)      
-  WRITE (*,*) '  Decimal exponent range      ', RANGE(i16)      
+  print *, 'kind=int2'
+  print *, '  Number of significant digits', digits(i16)         
+  print *, '  Largest number              ', huge(i16)       
+  print *, '  Base of the model           ', radix(i16)      
+  print *, '  Decimal exponent range      ', range(i16)      
 
-  WRITE (*,*) 'KIND=int4'
-  WRITE (*,*) '  Number of significant digits', DIGITS(i32)         
-  WRITE (*,*) '  Largest number              ', HUGE(i32)       
-  WRITE (*,*) '  Base of the model           ', RADIX(i32)      
-  WRITE (*,*) '  Decimal exponent range      ', RANGE(i32)      
+  print *, 'kind=int4'
+  print *, '  Number of significant digits', digits(i32)         
+  print *, '  Largest number              ', huge(i32)       
+  print *, '  Base of the model           ', radix(i32)      
+  print *, '  Decimal exponent range      ', range(i32)      
 
-  WRITE (*,*) 'KIND=int8'
-  WRITE (*,*) '  Number of significant digits', DIGITS(i64)         
-  WRITE (*,*) '  Largest number              ', HUGE(i64)       
-  WRITE (*,*) '  Base of the model           ', RADIX(i64)      
-  WRITE (*,*) '  Decimal exponent range      ', RANGE(i64)      
+  print *, 'kind=int8'
+  print *, '  Number of significant digits', digits(i64)         
+  print *, '  Largest number              ', huge(i64)       
+  print *, '  Base of the model           ', radix(i64)      
+  print *, '  Decimal exponent range      ', range(i64)      
 
-END PROGRAM int_kind
+end program int_kind
 
 
 

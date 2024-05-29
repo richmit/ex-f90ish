@@ -1,46 +1,74 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  @file      case_statement.f95
-!  @Author    Mitch Richling<https://www.mitchr.me>
-!  @Copyright Copyright 2012 by Mitch Richling.  All rights reserved.
-!  @brief     The case statement. @EOL
-!  @Std       F95
+! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
+!!
+! @file      case_statement.f95
+! @author    Mitch Richling http://www.mitchr.me/
+! @brief     The case statement. @EOL
+! @std       F95 
+! @copyright 
+!  @parblock
+!  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All
+!  rights reserved.
+!
+!  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
+!  conditions are met:
+!
+!  1. Redistributions of source code must retain the above copyright notice, this list of conditions, and the following
+!     disclaimer.
+!
+!  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions, and the following
+!     disclaimer in the documentation and/or other materials provided with the distribution.
+!
+!  3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products
+!     derived from this software without specific prior written permission.
+!
+!  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+!  BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+!  SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+!  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+!  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+!  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+!  POSSIBILITY OF SUCH DAMAGE.
+!  @endparblock
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
+!##################################################################################################################################
 program case_statement
-  IMPLICIT NONE
+  implicit none
 
-  INTEGER :: i
+  integer :: i
 
-  SELECT CASE(.TRUE.)
-  CASE(.TRUE.)
-     WRITE (*,*) "LOGICAL CASE: .TRUE."
-  CASE(.FALSE.)
-     WRITE (*,*) "LOGICAL CASE: .FALSE."
-  END SELECT
+  select case(.true.)
+  case(.true.)
+     write (*,*) "LOGICAL CASE: .TRUE."
+  case(.false.)
+     write (*,*) "LOGICAL CASE: .FALSE."
+  end select
 
-  SELECT CASE('AB')
-  CASE('A')
-     WRITE (*,*) "CHAR CASE: A      "
-  CASE('B', 'C')
-     WRITE (*,*) "CHAR CASE: B,C    "
-  CASE('E':'K')
-     WRITE (*,*) "CHAR CASE: E:K    "
-  CASE('AB')
-     WRITE (*,*) "CHAR CASE: AB     "
-  CASE DEFAULT
-     WRITE (*,*) "CHAR CASE: DEFAULT"
-  END SELECT
+  select case('AB')
+  case('A')
+     print *, "CHAR CASE: A      "
+  case('B', 'C')
+     print *, "CHAR CASE: B,C    "
+  case('E':'K')
+     print *, "CHAR CASE: E:K    "
+  case('AB')
+     print *, "CHAR CASE: AB     "
+  case default
+     print *, "CHAR CASE: DEFAULT"
+  end select
 
-  DO i=0,11
-     SELECT CASE(i)
-     CASE(1)
-        WRITE (*,*) "INT CASE: 1      ", i
-     CASE(2,4)
-        WRITE (*,*) "INT CASE: 2,4    ", i
-     CASE(5:10)
-        WRITE (*,*) "INT CASE: 5:10   ", i
-     CASE DEFAULT
-        WRITE (*,*) "INT CASE: DEFAULT", i
-     END SELECT
-  END DO
+  do i=0,11
+     select case(i)
+     case(1)
+        print *, "INT CASE: 1      ", i
+     case(2,4)
+        print *, "INT CASE: 2,4    ", i
+     case(5:10)
+        print *, "INT CASE: 5:10   ", i
+     case default
+        print *, "INT CASE: DEFAULT", i
+     end select
+  end do
 
-END PROGRAM case_statement
+end program case_statement

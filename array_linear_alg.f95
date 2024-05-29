@@ -1,73 +1,97 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  @file      array_linear_alg.f95
-!  @Author    Mitch Richling<https://www.mitchr.me>
-!  @Copyright Copyright 2012 by Mitch Richling.  All rights reserved.
-!  @brief     Common linear algebra computations.@EOL
-!  @Keywords  none
-!  @Std       F95
+! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
+!!
+! @file      array_linear_alg.f95
+! @author    Mitch Richling http://www.mitchr.me/
+! @brief     Common linear algebra computations.@EOL
+! @std       F95 
+! @copyright 
+!  @parblock
+!  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All
+!  rights reserved.
 !
-!             See the array_sections for some common matrix manipulations.
-!             
+!  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
+!  conditions are met:
+!
+!  1. Redistributions of source code must retain the above copyright notice, this list of conditions, and the following
+!     disclaimer.
+!
+!  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions, and the following
+!     disclaimer in the documentation and/or other materials provided with the distribution.
+!
+!  3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products
+!     derived from this software without specific prior written permission.
+!
+!  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+!  BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+!  SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+!  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+!  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+!  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+!  POSSIBILITY OF SUCH DAMAGE.
+!  @endparblock
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
-PROGRAM array_linear_alg
+!##################################################################################################################################
+program array_linear_alg
 
-  IMPLICIT NONE
+  implicit none
 
   ! Array initialization (assignments work outside of declarations too)
-  REAL, DIMENSION(3, 3) :: a = RESHAPE((/  1,  2,  3,  4,  5,  6,  7,  8,  9 /),             (/ 3, 3 /))
-  REAL, DIMENSION(3, 3) :: ap
-  REAL, DIMENSION(3, 4) :: b = RESHAPE((/ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 /), (/ 3, 4 /))
-  REAL, DIMENSION(3, 4) :: bp
-  REAL, DIMENSION(3)    :: x =         (/ 22, 23, 24/)
-  REAL, DIMENSION(4)    :: y =         (/ 25, 26, 27, 28/)
+  real, dimension(3, 3) :: a = reshape((/  1,  2,  3,  4,  5,  6,  7,  8,  9 /),             (/ 3, 3 /))
+  real, dimension(3, 3) :: ap
+  real, dimension(3, 4) :: b = reshape((/ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 /), (/ 3, 4 /))
+  real, dimension(3, 4) :: bp
+  real, dimension(3)    :: x =         (/ 22, 23, 24/)
+  real, dimension(4)    :: y =         (/ 25, 26, 27, 28/)
 
-  PRINT *
-  PRINT '(a,9f7.1)',  '               a=', a
-  PRINT '(a,3f7.1)',  '               a=', a(1,:)
-  PRINT '(a,3f7.1)',  '                 ', a(2,:)
-  PRINT '(a,3f7.1)',  '                 ', a(3,:)
-  PRINT '(a,12f7.1)', '               b=', b
-  PRINT '(a,4f7.1)',  '               b=', b(1,:)
-  PRINT '(a,4f7.1)',  '                 ', b(2,:)
-  PRINT '(a,4f7.1)',  '                 ', b(3,:)
-  PRINT '(a,3f7.1)',  '               x=', x
-  PRINT '(a,4f7.1)',  '               y=', y
+  print *
+  print '(a,9f7.1)',  '               a=', a
+  print '(a,3f7.1)',  '               a=', a(1,:)
+  print '(a,3f7.1)',  '                 ', a(2,:)
+  print '(a,3f7.1)',  '                 ', a(3,:)
+  print '(a,12f7.1)', '               b=', b
+  print '(a,4f7.1)',  '               b=', b(1,:)
+  print '(a,4f7.1)',  '                 ', b(2,:)
+  print '(a,4f7.1)',  '                 ', b(3,:)
+  print '(a,3f7.1)',  '               x=', x
+  print '(a,4f7.1)',  '               y=', y
 
-  PRINT *
-  PRINT '(a,3f7.1)',  '             2*x=', 2*x
-  PRINT '(a,3f7.1)',  '             x+x=', x+x
-  PRINT '(a,9f7.1)',  '             2*a=', 2*a
+  print *
+  print '(a,3f7.1)',  '             2*x=', 2*x
+  print '(a,3f7.1)',  '             x+x=', x+x
+  print '(a,9f7.1)',  '             2*a=', 2*a
 
-  PRINT *
-  ap=TRANSPOSE(a)
-  PRINT '(a,9f7.1)',  '    TRANSPOSE(a)=', ap
-  PRINT '(a,3f7.1)',  '    TRANSPOSE(a)=', ap(1,:)
-  PRINT '(a,3f7.1)',  '                 ', ap(2,:)
-  PRINT '(a,3f7.1)',  '                 ', ap(3,:)
+  print *
+  ap=transpose(a)
+  print '(a,9f7.1)',  '    transpose(a)=', ap
+  print '(a,3f7.1)',  '    transpose(a)=', ap(1,:)
+  print '(a,3f7.1)',  '                 ', ap(2,:)
+  print '(a,3f7.1)',  '                 ', ap(3,:)
 
-  PRINT *
-  PRINT '(a,f7.1)',   'DOT_PRODUCT(y,y)=', DOT_PRODUCT(y,y)
-  PRINT '(a,3f7.1)',  '     MATMUL(a,x)=', MATMUL(a,x)
-  PRINT '(a,3f7.1)',  '     MATMUL(b,y)=', MATMUL(b,y)
+  print *
+  print '(a,f7.1)',   'dot_product(y,y)=', dot_product(y,y)
+  print '(a,3f7.1)',  '     matmul(a,x)=', matmul(a,x)
+  print '(a,3f7.1)',  '     matmul(b,y)=', matmul(b,y)
 
-  PRINT *
-  bp=MATMUL(a,b)
-  PRINT '(a,12f7.1)', '     MATMUL(a,b)=', bp
-  PRINT '(a,4f7.1)',  '     MATMUL(a,b)=', bp(1,:)
-  PRINT '(a,4f7.1)',  '                 ', bp(2,:)
-  PRINT '(a,4f7.1)',  '                 ', bp(3,:)
+  print *
+  bp=matmul(a,b)
+  print '(a,12f7.1)', '     matmul(a,b)=', bp
+  print '(a,4f7.1)',  '     matmul(a,b)=', bp(1,:)
+  print '(a,4f7.1)',  '                 ', bp(2,:)
+  print '(a,4f7.1)',  '                 ', bp(3,:)
 
-  PRINT *
-  PRINT '(a,3f7.1)',  '  a(1,:) . a(:,1)=', DOT_PRODUCT(a(1,:), a(:,1))
-  ap=MATMUL(a, a)
-  PRINT '(a,3f7.1)',  '       (a*a)(1,1)=', ap(1,1)
+  print *
+  print '(a,3f7.1)',  '  a(1,:) . a(:,1)=', dot_product(a(1,:), a(:,1))
+  ap=matmul(a, a)
+  print '(a,3f7.1)',  '       (a*a)(1,1)=', ap(1,1)
 
-  PRINT *
+  print *
   ap=a
-  ap(2,:)=-2*ap(1,:)+ap(2,:) ! Rank 1 update
-  PRINT '(a,9f7.1)',  'a: R2 <- -2*R1+R2=', ap
-  PRINT '(a,3f7.1)',  'a: R2 <- -2*R1+R2=', ap(1,:)
-  PRINT '(a,3f7.1)',  '                  ', ap(2,:)
-  PRINT '(a,3f7.1)',  '                  ', ap(3,:)
+  ap(2,:)=-2*ap(1,:)+ap(2,:) ! rank 1 update
+  print '(a,9f7.1)',  'a: r2 <- -2*r1+r2=', ap
+  print '(a,3f7.1)',  'a: r2 <- -2*r1+r2=', ap(1,:)
+  print '(a,3f7.1)',  '                  ', ap(2,:)
+  print '(a,3f7.1)',  '                  ', ap(3,:)
 
-END PROGRAM array_linear_alg
+end program array_linear_alg
