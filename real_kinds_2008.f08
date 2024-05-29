@@ -52,7 +52,7 @@ program real_kinds_2008
   print *, 'Kind re64= ', kind(re64)
   print *, 'Kind re128=', kind(re128)
 
-  print *, ''
+  print *
   print *, 'Real (re32) Info'
   print *, '   Number of significant digits       ', digits(re32)         
   print *, '   Almost negligible compared to one  ', epsilon(re32)    
@@ -64,7 +64,7 @@ program real_kinds_2008
   print *, '   Decimal exponent range             ', range(re32)      
   print *, '   Smallest positive number           ', tiny(re32)       
 
-  print *, ''
+  print *
   print *, 'Double (re64) Info'
   print *, '   Number of significant digits       ', digits(re64)         
   print *, '   Almost negligible compared to one  ', epsilon(re64)    
@@ -76,7 +76,7 @@ program real_kinds_2008
   print *, '   Decimal exponent range             ', range(re64)      
   print *, '   Smallest positive number           ', tiny(re64)       
 
-  print *, ''
+  print *
   print *, 'Double (re128) Info'
   print *, '   Number of significant digits       ', digits(re128)         
   print *, '   Almost negligible compared to one  ', epsilon(re128)    

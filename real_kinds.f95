@@ -64,15 +64,15 @@ program real_kinds
   print *, 'kind re2=', kind(re2)
   print *, 'kind re3=', kind(re3)
 
-  print *, ''
+  print *
   print *, 'kind dp1=', kind(dp1)
   print *, 'kind dp2=', kind(dp2)
   print *, 'kind dp3=', kind(dp3)
 
-  print *, ''
+  print *
   print *, 'kind qp1=', kind(qp1)
 
-  print *, ''
+  print *
   print *, 'Real (re1) Info'
   print *, '   Number of significant digits       ', digits(re1)         
   print *, '   Almost negligible compared to one  ', epsilon(re1)    
@@ -84,7 +84,7 @@ program real_kinds
   print *, '   Decimal exponent range             ', range(re1)      
   print *, '   Smallest positive number           ', tiny(re1)       
 
-  print *, ''
+  print *
   print *, 'Double (dp1) Info'
   print *, '   Number of significant digits       ', digits(dp1)         
   print *, '   Almost negligible compared to one  ', epsilon(dp1)    
@@ -96,7 +96,7 @@ program real_kinds
   print *, '   Decimal exponent range             ', range(dp1)      
   print *, '   Smallest positive number           ', tiny(dp1)       
 
-  print *, ''
+  print *
   print *, 'Double (qp1) Info'
   print *, '   Number of significant digits       ', digits(qp1)         
   print *, '   Almost negligible compared to one  ', epsilon(qp1)    

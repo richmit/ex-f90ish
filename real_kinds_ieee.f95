@@ -52,7 +52,7 @@ program real_kinds_ieee
   real(kind=ieee_dp) :: a_dp
   real(kind=ieee_qp) :: a_qp
 
-  print *, ''
+  print *
   print *, 'Kind for single                       ', ieee_sp
   print *, '   Number of significant digits       ', digits(a_sp)         
   print *, '   Almost negligible compared to one  ', epsilon(a_sp)    
@@ -64,7 +64,7 @@ program real_kinds_ieee
   print *, '   Decimal exponent range             ', range(a_sp)      
   print *, '   Smallest positive number           ', tiny(a_sp)       
 
-  print *, ''
+  print *
   print *, 'Kind for double                       ', ieee_dp
   print *, '   Number of significant digits       ', digits(a_dp)         
   print *, '   Almost negligible compared to one  ', epsilon(a_dp)    
@@ -76,7 +76,7 @@ program real_kinds_ieee
   print *, '   Decimal exponent range             ', range(a_dp)      
   print *, '   Smallest positive number           ', tiny(a_dp)       
 
-  print *, ''
+  print *
   print *, 'Kind for single                       ', ieee_qp
   print *, '   Number of significant digits       ', digits(a_qp)         
   print *, '   Almost negligible compared to one  ', epsilon(a_qp)    
