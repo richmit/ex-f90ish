@@ -33,10 +33,11 @@
 !  @endparblock
 ! @filedetails   
 !
-!  The allocated technique below works well for arrays that are too big to fit on the stack.
-!  For another example of allocated, see dynamic_array.f95.
+!  Assumed arrays, demonstrated in SWAP1, are nice if they are small enough to fit on the stack.  For larger arrays, demonstrated
+!  in SWAP2, ALLOCATE is the way to go.  SWAP3 demonstrates something similar using POINTERs; however, this technique isn't as
+!  recommended as it's a bit more error prone.
 !  
-!  The swap subroutines here are quite wasteful in terms of RAM, see array_elemental.f95 for a better implementation.
+!  These swap subroutines are quite wasteful in terms of RAM.  See array_elemental.f95 for a better implementation.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################
@@ -90,8 +91,8 @@ contains
     tmp = a
     a = b
     b = tmp
-    deallocate(tmp)                                   ! Not required.  Here to remind us that space for tmp released
-                                                      ! when it falls out of scope (no SAVE attribute on tmp).
+    deallocate(tmp)                                   ! Not required as TMP has no SAVE attribute, and will be automatically
+                                                      ! released when it falls out of scope.  Still, it's a nice reminder.
   end subroutine swap2
 
   subroutine swap3(a, b)
