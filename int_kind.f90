@@ -36,31 +36,31 @@
 !##################################################################################################################################
 program int_kind
   implicit none
-                                                         ! | typical 32-bit C | C99     | bytes |    N=largest number | log_10(N) |
-                                                         ! |------------------+---------+-------+---------------------+-----------|
-  integer, parameter :: int8  = selected_real_kind(r=4)  ! | signed char      | int8_t  |     1 |                 127 |  4.844187 |
-  integer, parameter :: int16 = selected_real_kind(r=10) ! | signed short     | int16_t |     2 |               32767 | 10.397177 |
-  integer, parameter :: int32 = selected_real_kind(r=21) ! | signed int       | int32_t |     4 |          2147483647 | 21.487562 |
-  integer, parameter :: int64 = selected_real_kind(r=43) ! | signed long      | int64_t |     8 | 9223372036854775807 | 43.668272 |
+                                                        ! | typical C    | C99     | bytes |    N=largest number |     log_10(N) |
+                                                        ! |--------------+---------+-------+---------------------+---------------|
+  integer, parameter :: int8  = selected_int_kind(r=2)  ! | signed char  | int8_t  |     1 |                 127 | 2.10380372096 |
+  integer, parameter :: int16 = selected_int_kind(r=4)  ! | signed short | int16_t |     2 |               32767 | 4.51543668114 |
+  integer, parameter :: int32 = selected_int_kind(r=9)  ! | signed int   | int32_t |     4 |          2147483647 | 9.33192986538 |
+  integer, parameter :: int64 = selected_int_kind(r=18) ! | signed long  | int64_t |     8 | 9223372036854775807 | 18.9648897268 |
 
   integer(kind=int8)  :: i8
   integer(kind=int16) :: i16
   integer(kind=int32) :: i32
   integer(kind=int64) :: i64
 
-  print *, 'kind=int1'
+  print *, 'kind=int8                     ', int8
   print *, '  Number of significant digits', digits(i8)      
   print *, '  Largest number              ', huge(i8)        
   print *, '  Base of the model           ', radix(i8)       
   print *, '  Decimal exponent range      ', range(i8)       
 
-  print *, 'kind=int2'
+  print *, 'kind=int16                    ', int16
   print *, '  Number of significant digits', digits(i16)         
   print *, '  Largest number              ', huge(i16)       
   print *, '  Base of the model           ', radix(i16)      
   print *, '  Decimal exponent range      ', range(i16)      
 
-  print *, 'kind=int4'
+  print *, 'kind=int32                    ', int32
   print *, '  Number of significant digits', digits(i32)         
   print *, '  Largest number              ', huge(i32)       
   print *, '  Base of the model           ', radix(i32)      
