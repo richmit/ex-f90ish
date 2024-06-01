@@ -37,34 +37,43 @@ program proc_args
 
   implicit none
 
-  integer, parameter  :: slen = 20
-  integer             :: i, ierror, length
-  character(len=slen) :: argument
+  integer                       :: i, ierror, str_len
+  character(len=:), allocatable :: argument
   
-  call get_command(argument, length, ierror)
+  ! First we grab the entire command line.  This isn't normally very useful because it may be impossible to parse the entire
+  ! command line produced by get_command because quotes on the command line are frequently lost.  For example the following two
+  ! command lines will usually produce the same string from get_command:
+  !  - foo a b
+  !  - foo 'a b'
+  ! But the command_argument_count will be correct (2 for the first and 1 for the second), and get_command_argument will
+  ! also do the correct thing.  
+
+  ! get_command can be used to simply query the string length by only providing the length argument to the call
+  call get_command(length=str_len)
+  ! Now that we know how long the string is, we allocate the argument variable
+  allocate(character(len=str_len) :: argument)
+  ! Now that we have space for the string, we query it.
+  call get_command(argument, str_len, ierror)
+  ! It is  extraordinarily unlikely the above call will fail; however, it's never a bad idea to check. ;)
   if(ierror <= 0) then
-     print *, 'Entire command line: ', argument(1:min(slen, length))
-     if(ierror < 0) then
-        print *, '   Length was:      ', length, ' ---- TOO LONG FOR VARIABLE!'
-     else 
-        print *, '   Length was:      ', length
-    end if
+     print *, 'Entire command line: ', argument
   else
      print *, 'Command line could not be retrieved'
   end if
 
-  do i = 1,command_argument_count()
-     call get_command_argument(i, argument, length, ierror)
+  ! Now we pull the each command argument from the command line with get_command_argument.  
+
+  ! get_command_argument works just like get_command -- you can query the length and then allocate a string for the argument.
+  ! I'm going to be lazy and just reuse the argument string we allocated above -- it's big enough for the entire command line, so
+  ! it must be big enough for each argument individually.
+
+  do i = 1, command_argument_count()
+     call get_command_argument(i, argument, str_len, ierror)
+     ! Again, very unlikely the previous call would fail given argument is guaranteed to be big enough.  Still we check.
      if(ierror <= 0) then
-        print *, 'Argument:      ', argument(1:min(slen, length))
-        print *, '   Arg Number: ', i
-        if(ierror < 0) then
-           print *, '   Length was: ', length, ' ---- TOO LONG FOR VARIABLE!'
-        else 
-           print *, '   Length was: ', length
-        end if
+        print '(a,i0.0,a,a)', 'Argument: ', i, ' was: ', trim(argument)
      else
-        print *, 'Argument ', i, 'could not be retrieved'
+        print '(a,i0.0,a)', 'Argument ', i, 'could not be retrieved'
      end if
   end do
 
