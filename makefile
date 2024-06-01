@@ -28,7 +28,7 @@ FFLAGS   = -pedantic -Wall -Wextra
 # 	 intel-dev-msys2-wrapper.sh $(FC) $(shell sed -nr 's/^! @std.* F[0-9]*([0-9][0-9])/-stand:f\1/p' $<)  $(FFLAGS) $? -o $@	
 
 # Put targets here
-TARGETS  = func_opt_arg func_recursive overloading 
+TARGETS  = func_opt_arg func_recursive overloading file_io
 #TARGETS += prog_struct
 TARGETS += case_statement loop_do loop_forall loopless_where
 TARGETS += real_kinds real_kinds_ieee int_kind int_kind_c int_kind_2008 real_kinds_2008 
@@ -43,7 +43,7 @@ all : $(TARGETS)
 	@echo Make Complete
 
 clean :
-	rm -rf a.out *~ *.bak *.mod *.obj *.o *.exe *__genmod.f90 $(TARGETS)
+	rm -rf a.out *~ *.bak *.mod *.obj *.o *.exe *__genmod.f90 file_io.txt $(TARGETS)
 	@echo Clean Complete
 
 prog_struct : mod_struct.f90 prog_struct.f90 
