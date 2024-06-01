@@ -1,12 +1,12 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      real_kinds_ieee.f95
+! @file      real_kinds_ieee.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Declaring IEEE-like variables.@EOL
 ! @keywords  real kind iso_fortran_env iso_c_binding double single IEEE
 ! @std       F95 
-! @see       real_kinds.f95 real_kinds_2008.f08
+! @see       real_kinds.f90 real_kinds_2008.f90
 ! @copyright 
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All

@@ -1,7 +1,7 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      proc_args.f03
+! @file      proc_args.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     How to access command line arguments. @EOL
 ! @std       F2003 

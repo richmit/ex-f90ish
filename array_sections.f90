@@ -1,7 +1,7 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      array_sections.f95
+! @file      array_sections.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Using array sections.@EOL
 ! @std       F95 

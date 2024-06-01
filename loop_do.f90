@@ -1,7 +1,7 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      loop_do.f95
+! @file      loop_do.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Simple examples of do loops and labels.@EOL
 ! @std       F95 

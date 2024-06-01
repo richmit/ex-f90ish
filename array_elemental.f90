@@ -1,7 +1,7 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      array_elemental.f95
+! @file      array_elemental.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Demo elemental subroutines and functions.@EOL
 ! @std       F95 

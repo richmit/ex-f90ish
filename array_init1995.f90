@@ -1,11 +1,11 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      array_init1995.f95
+! @file      array_init1995.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Array assignment and initialization with F95.@EOL
 ! @std       F95 
-! @see       array_init2003.f03
+! @see       array_init2003.f90
 ! @copyright 
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All

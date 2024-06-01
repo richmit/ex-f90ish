@@ -1,7 +1,7 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      array_reduction.f95
+! @file      array_reduction.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Array reduction functions COUNT, ALL, and ANY.@EOL
 ! @std       F95 

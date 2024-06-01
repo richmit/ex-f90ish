@@ -1,11 +1,11 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      int_kind.f95
+! @file      int_kind.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Typical ways to select integer KINDs.@EOL
 ! @std       F95 
-! @see       int_kind_2008.f08 int_kind_c.f03
+! @see       int_kind_2008.f90 int_kind_c.f90
 ! @copyright 
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All

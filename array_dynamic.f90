@@ -1,11 +1,11 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      array_dynamic.f95
+! @file      array_dynamic.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Demonstrate automatic and allocated arrays.@EOL
 ! @std       F95 
-! @see       array_elemental.f95 dynamic_array.f95
+! @see       array_elemental.f90 dynamic_array.f90
 ! @copyright 
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All
@@ -37,7 +37,7 @@
 !  in SWAP2, ALLOCATE is the way to go.  SWAP3 demonstrates something similar using POINTERs; however, this technique isn't as
 !  recommended as it's a bit more error prone.
 !  
-!  These swap subroutines are quite wasteful in terms of RAM.  See array_elemental.f95 for a better implementation.
+!  These swap subroutines are quite wasteful in terms of RAM.  See array_elemental.f90 for a better implementation.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################

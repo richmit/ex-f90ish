@@ -1,11 +1,11 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      prog_struct.f95
+! @file      prog_struct.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     The typical structure of a program file. @EOL
 ! @std       F95 
-! @see       mod_struct.f95
+! @see       mod_struct.f90
 ! @copyright 
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All

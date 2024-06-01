@@ -1,7 +1,7 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      func_recursive.f95
+! @file      func_recursive.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Factorial computation via direct recursion with a function. @EOL
 ! @std       F95 

@@ -1,12 +1,12 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      real_kinds.f95
+! @file      real_kinds.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Typical way to declare single,  double, & quad precision reals in fortran 95. @EOL
 ! @keywords  real kind iso_fortran_env iso_c_binding double single 2003 2018
 ! @std       F95 
-! @see       real_kinds_ieee.f95 real_kinds_2008.f08
+! @see       real_kinds_ieee.f90 real_kinds_2008.f90
 ! @copyright 
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All
@@ -35,7 +35,7 @@
 ! @filedetails   
 !
 !  Before the ISO_FORTRAN_ENV module, Fortran programmers used a variety of ways to specify single, double, and quad floating
-!  point variables.  This program demonstrates a few of the most common methods.  For a more modern way see real_kinds_2008.f08
+!  point variables.  This program demonstrates a few of the most common methods.  For a more modern way see real_kinds_2008.f90
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################

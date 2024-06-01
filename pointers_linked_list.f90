@@ -1,7 +1,7 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      pointers_linked_list.f95
+! @file      pointers_linked_list.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Pointer demo with a linked list. @EOL
 ! @std       F95 

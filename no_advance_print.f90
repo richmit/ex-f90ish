@@ -1,11 +1,11 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      no_advance_print.f95
+! @file      no_advance_print.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Finally!  We can print without a newline!@EOL
 ! @std       F95 
-! @see       pointers_linked_list.f95
+! @see       pointers_linked_list.f90
 ! @copyright 
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All

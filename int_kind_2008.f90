@@ -1,11 +1,11 @@
 ! -*- Mode:F90; Coding:us-ascii-unix; fill-column:129 -*-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.S.!!
 !!
-! @file      int_kind_2008.f08
+! @file      int_kind_2008.f90
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Better ways to select integer KINDs in fortran 2008.@EOL
 ! @std       F2008
-! @see       int_kind_c.f03 int_kind.f95
+! @see       int_kind_c.f90 int_kind.f90
 ! @copyright
 !  @parblock
 !  Copyright (c) 2024, Mitchell Jay Richling <http://www.mitchr.me/> All
