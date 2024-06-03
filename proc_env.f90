@@ -37,20 +37,32 @@ program proc_env
 
   implicit none
 
-  integer, parameter  :: slen = 128
-  integer             :: ierror, length
-  character(len=slen) :: argument
+  integer                       :: ierror = 0
+  integer                       :: e_var_len
+  character(len=:), allocatable :: e_var_val
+
   
-  call get_environment_variable('PATH', argument, length, ierror, .FALSE.)
-  if(ierror <= 0) then
-     print *, 'PATH:           ', argument(1:min(slen, length))
-     if(ierror < 0) then
-        print *, '   PATH length: ', length, ' ---- too long for variable!'
-     else 
-        print *, '   PATH length: ', length
-     end if
+
+  call get_environment_variable('PATH', length=e_var_len, status=ierror, trim_name=.false.)
+
+  if(ierror /= 0) then
+     print *, ierror
+     stop 'ERROR: Unable to fine PATH environment variable'
+  end if
+
+  print '(a,i0,a)', 'PATH variable found, and is ', e_var_len, ' characters long.'
+
+  ! Now that we know how long the string is, we allocate the e_var_val variable
+  allocate(character(len=e_var_len) :: e_var_val)
+
+  ! Now that we have space for the string, we query it.
+  call get_environment_variable('PATH', e_var_val, e_var_len, ierror, .FALSE.)
+
+  if(ierror /= 0) then
+     print '(a,i0,a)', 'Something went wrong.  Received error code: ', ierror, ' from get_environment_variable'
   else
-     print *, 'PATH could not be retrieved'
+     print '(a)', 'PATH variable value is:'
+     print '(4x,a)', e_var_val
   end if
 
 end program proc_env
