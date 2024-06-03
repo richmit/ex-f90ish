@@ -33,11 +33,11 @@
 !  @endparblock
 ! @filedetails   
 !
-!  Assumed arrays, demonstrated in SWAP1, are nice if they are small enough to fit on the stack.  For larger arrays, demonstrated
-!  in SWAP2, ALLOCATE is the way to go.  SWAP3 demonstrates something similar using POINTERs; however, this technique isn't as
-!  recommended as it's a bit more error prone.
+!  Stack allocated temporary arrays, as demonstrated in SWAP1, are simple to code but prone to failure when arrays get too large
+!  for the stack.  For larger arrays ALLOCATE, demonstrated in SWAP2, is the way to go.  SWAP3 demonstrates something similar
+!  using POINTERs; however, it's a bit more error prone.
 !  
-!  These swap subroutines are quite wasteful in terms of RAM.  See array_elemental.f90 for a better implementation.
+!  These swap subroutines are quite wasteful in terms of RAM.  Also see array_elemental.f90 for an alternative implementation.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################
@@ -66,28 +66,25 @@ program array_dynamic
 contains
 
   subroutine swap1(a, b)
-    implicit none
-    integer, dimension(:), intent(inout) :: a, b      ! assumed size arrays    
-    integer, dimension(size(a)) :: tmp                ! space allocated (normally on stack) here
-    tmp = a
+    integer, dimension(:), intent(inout) :: a, b      ! assumed shape arrays    
+    integer, dimension(size(a)) :: tmp                ! space allocated (normally on stack) here!
+    tmp = a                                           ! This will fail for arrays larger than the stack!!!
     a = b
     b = tmp
-                                                      ! space for tmp is automatically released now
+                                                       ! space for tmp is automatically released now
   end subroutine swap1
 
   subroutine swap2(a, b)
+    integer, dimension(:), intent(inout) :: a, b      ! assumed shape arrays
     integer                              :: ierror    ! Used error code
-    integer, dimension(:), intent(inout) :: a, b      ! assumed size arrays
     integer, dimension(:), allocatable   :: tmp       ! No space is allocated here
     allocate(tmp(size(a)), stat=ierror)               ! allocate space (normally on the heap)
     if(ierror .ne. 0) then
-       print *, 'ERROR: Could not allocate vector'    ! die if we could not allocate space
-       stop
+       stop 'ERROR: Could not allocate vector'        ! die if we could not allocate space
     end if
     if (.not.allocated(tmp)) then                     ! die if we could not allocate space
-       print *, 'ERROR: Could not allocate vector'      ! It is not necessary to test this after the previous
-       stop                                             ! IF/THEN, but it is a good demonstration of the ALLOCATE
-    end if                                              ! function. :)
+       stop 'ERROR: Could not allocate vector'        ! It is not necessary to test this after the previous
+    end if                                            ! IF/THEN, but it is a good demonstration of ALLOCATED!
     tmp = a
     a = b
     b = tmp
@@ -96,11 +93,12 @@ contains
   end subroutine swap2
 
   subroutine swap3(a, b)
-    implicit none
-    integer, dimension(:), intent(inout) :: a, b      ! assumed size arrays
+    integer, dimension(:), intent(inout) :: a, b      ! assumed shape arrays
     integer, dimension(:), pointer :: tmp             ! No space is allocated here
     allocate(tmp(size(a)))                            ! allocate space (normally on the heap)
-    if (.not.associated(tmp)) stop                    ! die if we could not allocate space
+    if (.not.associated(tmp)) then
+       stop 'ERROR: Could not allocate vector'
+    end if
     tmp = a
     a = b
     b = tmp
