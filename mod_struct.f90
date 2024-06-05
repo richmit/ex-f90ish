@@ -47,7 +47,6 @@ module mod_struct
 contains
 
   subroutine hi_ma(an_int)
-    implicit none                ! Not necessary because module is IMPLICIT NONE.  I include it anyway. ;)
     integer, intent(in)  :: an_int
     print *, 'hello ma! ', i, an_int
   end subroutine hi_ma

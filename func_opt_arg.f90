@@ -50,7 +50,6 @@ program func_opt_arg
 contains
 
   function a_func(arg1, arg2, arg3, arg4)
-    implicit none
     integer, intent(in)           :: arg1, arg2
     integer, intent(in), optional :: arg3, arg4
     integer                       :: a_func

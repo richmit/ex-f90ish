@@ -41,65 +41,51 @@ program prog_struct
 
   integer  :: i = 2
 
-  ! INTERFACE required because outside_func is not in the CONTAINS section
-  ! or in a USEd module
-  interface
-     function outside_func(x)
-       integer, intent(in) :: x
-       integer             :: outside_func
-     end function outside_func
-  end interface
+  interface                                             
+     pure function outside_func(x)                       ! outside_func is not in the CONTAINS section or in a USEd module
+       integer, intent(in) :: x                    
+       integer             :: outside_func         
+     end function outside_func                     
+  end interface                                    
+                                                   
+  call a_sub_no_args                                     ! You don't need empty () to call a subroutine with no args...
+                                                   
+  print *, 'i=', i                                 
+  call a_sub_with_args(1, i)                             ! Note the second arg must be a variable that can be set in this case...
+  print *, 'i=', i                                 
+                                                   
+  print *, 'osf=', outside_func(i)                 
+                                                   
+  call hi_ma(i)                                    
+                                                   
+contains                                           
+                                                   
+  subroutine a_sub_no_args                               ! Can't be pure because it prints!
+    print *, 'hello, world!'                             ! variable and routine declarations go here
+    return                                               ! return is not required at the end..
+  end subroutine a_sub_no_args                           ! Note the name.  It's optional, but good practice to include it.
 
-  ! You don't need empty () to call a subroutine with no args...
-  call a_sub_no_args
-
-  print *, 'i=', i
-  ! Note the second arg must be a variable that can be set in this case...
-  call a_sub_with_args(1, i)
-  print *, 'i=', i
-
-  print *, 'osf=', outside_func(i)
-
-  call hi_ma(i)
-
-contains
-
-  subroutine a_sub_no_args
-    implicit none
-    ! variable and routine declarations go here
-    print *, 'hello, world!'
-    ! return is not required at the end..
-    return
-  end subroutine a_sub_no_args
-
-  subroutine a_sub_with_args(an_in_arg, an_out_arg)
-    implicit none
-    integer, intent(in)  :: an_in_arg
-    integer, intent(out) :: an_out_arg
-    an_out_arg = an_in_arg ! This will change the an_out_arg var in caller!!
-    ! return is not required at the end..
-    return
-  end subroutine a_sub_with_args
-
-  function a_func(an_arg, another_arg)
-    implicit none
-    ! Note: INTENT(IN) on all args -- God fearing functions never modify args!
-    integer, intent(in) :: an_arg        
-    integer, intent(in) :: another_arg
-    ! Must declare return type
-    integer             :: a_func
-    ! This sets the return value
-    a_func = an_arg + another_arg
-    ! return is not required at the end..
-    return
-  end function a_func
-
-end program prog_struct
-
-function outside_func(x)
-  implicit none
+  pure subroutine a_sub_with_args(an_in_arg, an_out_arg) ! You can have intent(out) arguments in pure subroutines...
+    integer, intent(in)  :: an_in_arg             
+    integer, intent(out) :: an_out_arg            
+    an_out_arg = an_in_arg                               ! This will change the an_out_arg var in caller!!
+    return                                               ! return is not required at the end..
+  end subroutine a_sub_with_args                  
+                                                  
+  pure function a_func(an_arg, another_arg)              ! Stick to pure procedures whenever you can!
+    integer, intent(in) :: an_arg                        ! intent(in) on all args -- God fearing functions never modify args!
+    integer, intent(in) :: another_arg            
+    integer             :: a_func                        ! Must declare return type.  Can also be on the function line.
+    a_func = an_arg + another_arg                        ! This sets the return value
+    return                                               ! return is not required at the end..
+  end function a_func                             
+                                                  
+end program prog_struct                           
+                                                  
+pure function outside_func(x)                     
+  implicit none                                          ! Necessary because it's outside PROGRAM.
   integer, intent(in) :: x
   integer             :: outside_func
   outside_func = x * x
-  return
+  return                                                 ! return is not required at the end..
 end function outside_func

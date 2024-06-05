@@ -66,7 +66,6 @@ program overloading
 end program overloading
 
 function foobar_int(x)
-  implicit none
   integer, intent(in) :: x
   integer             :: foobar_int
   foobar_int = x * x
@@ -74,7 +73,6 @@ function foobar_int(x)
 end function foobar_int
 
 function foobar_real(x)
-  implicit none
   real, intent(in) :: x
   real             :: foobar_real
   foobar_real = x * x * x

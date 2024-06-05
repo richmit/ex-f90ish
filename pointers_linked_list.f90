@@ -55,7 +55,6 @@ program pointers_linked_list
 contains
 
   subroutine push(string)                                                  ! Push a string on the list
-    implicit none
     character(len=*), intent(in)  :: string
     type(node), pointer           :: new_node                              ! The node we will add
     allocate(new_node)                                                     ! Allocate space for the new node
@@ -74,7 +73,6 @@ contains
   end subroutine push
 
   subroutine dump()                                                        ! Print out the list
-    implicit none
     type(node), pointer :: cur_node
     cur_node => the_list                                                   ! Start with the first element
     write (*,fmt="(a)",advance='no') 'LIST: '                              ! Print the list tag

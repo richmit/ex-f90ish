@@ -51,7 +51,6 @@ program func_recursive
 contains
 
   recursive function ifact(n) result (ifactr)  ! RESULT required for direct recursion (silly, but true)
-    implicit none
     integer, intent(in) :: n
     integer             :: ifactr
     if ( n <=1 ) then
