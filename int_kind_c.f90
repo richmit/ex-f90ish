@@ -38,7 +38,7 @@
 
 !##################################################################################################################################
 program int_kind_c
-  use, intrinsic:: iso_c_binding, only: c_int8_t, c_int16_t, c_int32_t, c_int64_t
+  use, intrinsic:: iso_c_binding, only: c_int8_t, c_int16_t, c_int32_t, c_int64_t, c_double
   implicit none
 
   integer(kind=c_int8_t)  :: i8
