@@ -9,7 +9,7 @@
 ################################################################################################################################################################
 # GCC
 FC       = gfortran
-FFLAGS   = -pedantic -Wall -Wextra
+FFLAGS   = -pedantic -Wall -Wextra -std=f2023
 %: %.f90
 	 $(FC) $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $? -o $@	
 
@@ -38,6 +38,7 @@ TARGETS += array_dynamic array_sections array_elemental
 TARGETS += array_reduction array_linear_alg array_init2003 array_init1995
 TARGETS += pointers_linked_list
 TARGETS += variable_decl
+TARGETS += namelist_read namelist_write
 
 all : $(TARGETS)
 	@echo Make Complete

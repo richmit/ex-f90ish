@@ -1,0 +1,7 @@
+! This is a comment
+&SOMENUMS
+a=2,                  ! Another comment
+c=1,                  ! Note no decimal point on the float, but it still works...  
+b=3,
+d=4.14                !  Note the vars are not in the order put in the namelist!
+/
