@@ -1,8 +1,8 @@
 ##
 # @file      makefile
 # @author    Mitch Richling <https://www.mitchr.me/>
-# @Copyright Copyright 1996,1998,2006,2009,2012 by Mitch Richling.  All rights reserved.
-# @brief     @EOL
+# @Copyright Copyright 1996,1998,2006,2009,2012,2025 by Mitch Richling.  All rights reserved.
+# @brief     Make file for fortran 90'ish examples.@EOL
 # @Keywords  
 # @Std       GNU Make
 
@@ -14,9 +14,9 @@ FFLAGS   = -pedantic -Wall -Wextra -std=f2023
 	 $(FC) $(shell sed -nr 's/^! @std.* F(.+)/--std=f\1/p' $<)  $(FFLAGS) $? -o $@	
 
 ################################################################################################################################################################
-# LLVM FLANG -- At the time of this witeing, flang dosen't suport anyting but F2018 and has limited command line options
+# LLVM FLANG
 # FC       = flang
-# FFLAGS   = -pedantic -Werror -std=f2018
+# FFLAGS   = -pedantic -Werror -std=f2023
 # %: %.f90
 # 	 $(FC) $(FFLAGS) $? -o $@	
 
@@ -25,10 +25,10 @@ FFLAGS   = -pedantic -Wall -Wextra -std=f2023
 # FC = ifx
 # FFLAGS = -warn:all
 # %: %.f90
-# 	 intel-dev-msys2-wrapper.sh $(FC) $(shell sed -nr 's/^! @std.* F[0-9]*([0-9][0-9])/-stand:f\1/p' $<)  $(FFLAGS) $? -o $@	
+# 	 $(FC) $(shell sed -nr 's/^! @std.* F[0-9]*([0-9][0-9])/-stand:f\1/p' $<)  $(FFLAGS) $? -o $@	
 
 # Put targets here
-TARGETS  = func_opt_arg func_recursive overloading file_io
+TARGETS  = func_opt_arg func_recursive overloading file_io array_rank
 #TARGETS += prog_struct
 TARGETS += case_statement loop_do loop_forall loopless_where
 TARGETS += real_kinds real_kinds_ieee int_kind int_kind_c int_kind_2008 real_kinds_2008 
