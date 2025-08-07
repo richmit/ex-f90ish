@@ -44,6 +44,8 @@
 
 !##################################################################################################################################
 program file_io
+  use, intrinsic :: iso_fortran_env, only: iostat_end
+
   implicit none
 
   integer :: io_stat, io_unit
@@ -121,12 +123,10 @@ program file_io
   do
      read (io_unit, iostat=io_stat, iomsg=io_msg, fmt=*) i
      if (io_stat /= 0) then
-        if (io_stat < 0) then
-           ! A negative I/O stat means EOF
+        if (io_stat == iostat_end) then
            print *, 'All Data Read'
            exit
         else
-           ! A positive I/O stat means ERROR
            print *, 'Read error condition!'
            print *, trim(io_msg)
            stop 1
