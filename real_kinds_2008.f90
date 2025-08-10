@@ -34,8 +34,12 @@
 !  @endparblock
 ! @filedetails   
 !
-!  ISO_FORTRAN_ENV has well named constants for real kinds that make it easy and portable to specify single, double, and quad
-!  precision.  Note that Note that if C compatibility is important, ISO_C_BINDING has similar kinds that work just as well.
+!  ISO_FORTRAN_ENV has well named constants for real kinds: real32, real64, & real128
+!    - These usually correspond to what we call single, double, and quad on the platform
+!    - real32 & real64 normally correspond to ISO_C_BINDING's c_float & c_double.
+!    - They are not necessarily IEEE types
+!    - They do not guarantee any numerical properties
+!    - They do not guarantee size -- i.e. it is common for the real128 type to be an 80-bit IEEE value.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################
