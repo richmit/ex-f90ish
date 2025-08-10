@@ -5,7 +5,7 @@
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Declaring IEEE-like variables.@EOL
 ! @keywords  real kind iso_fortran_env iso_c_binding double single IEEE
-! @std       F95 
+! @std       F2003
 ! @see       real_kinds.f90 real_kinds_2008.f90
 ! @copyright 
 !  @parblock
@@ -33,20 +33,17 @@
 !  POSSIBILITY OF SUCH DAMAGE.
 !  @endparblock
 ! @filedetails
-!  These techniques won't guarantee IEEE types, but they will get whatever the platform has to offer.  On machines with IEEE
-!  floating point types, the selected_real_kind calls used below will *generally* produce kinds corresponding to the standard
-!  IEEE floating types.  For the quad precision type, we set P=16 to get whatever is bigger than a double precision type on the
-!  current platform -- that might be a 80bit or a 128bit type for example.  Note that using real kind parameters from
-!  ISO_FORTRAN_ENV or ISO_C_BINDING are just as reliable in produceing IEEE types.
+!  These techniques guarantee IEEE types; however, they will fail if IEEE types are not available on the platform.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################
 program real_kinds_ieee
+  use, intrinsic :: ieee_arithmetic, only: ieee_selected_real_kind
   implicit none
 
-  integer, parameter :: ieee_sp = selected_real_kind(p=6,r=37)     ! IEEE Single Precision (32-bit)
-  integer, parameter :: ieee_dp = selected_real_kind(p=15,r=307)   ! IEEE Double Precision (64-bit)
-  integer, parameter :: ieee_qp = selected_real_kind(p=16)         ! IEEE Quad Precision   (128-bit or 80-bit)
+  integer, parameter :: ieee_sp = ieee_selected_real_kind(p=6,r=37)     ! IEEE Single Precision (32-bit)
+  integer, parameter :: ieee_dp = ieee_selected_real_kind(p=15,r=307)   ! IEEE Double Precision (64-bit)
+  integer, parameter :: ieee_qp = ieee_selected_real_kind(p=16)         ! IEEE Quad Precision   (128-bit or 80-bit)
 
   real(kind=ieee_sp) :: a_sp
   real(kind=ieee_dp) :: a_dp

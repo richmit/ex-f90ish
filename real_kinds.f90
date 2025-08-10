@@ -34,20 +34,32 @@
 !  @endparblock
 ! @filedetails   
 !
-!  Before the ISO_FORTRAN_ENV module, Fortran programmers used a variety of ways to specify single, double, and quad floating
-!  point variables.  This program demonstrates a few of the most common methods.  For a more modern way see real_kinds_2008.f90
+!  Fortran 95 programmers used a variety of ways to specify single, double, and quad floating point variables.  This program
+!  demonstrates a few of the most common methods.
+!
+!  Note that fortran 2003's ISO_C_BINDING & IEEE_ARITHMETIC added more, and fortran 2008's ISO_FORTRAN_ENV module added even
+!  more.
+!
+!  On most compilers:
+!    - spk1 and dpk1 usually correspond to fortran 2003's ISO_C_BINDING c_float & c_double.
+!    - spk3, dpk3, & qpk3 are your best bet for IEEE types on fortran 95.
+!
+!  None of these methods guarantee IEEE types, but they will get whatever the platform has to offer.  On machines with IEEE
+!  floating point types, the selected_real_kind calls used below (spk3, dpk3, & qpk3) are your best bet to get IEEE floating
+!  types with fortran 95.  Note that for the quad precision type, we set P=16 to get whatever is bigger than a double precision
+!  type on the current platform -- on typical platforms that will usually be an 80bit or a 128bit type.  
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.H.E.!!
 
 !##################################################################################################################################
 program real_kinds
   implicit none
 
-  ! standard ways to get reals:
-  integer, parameter :: rek1 = kind(0.0e0) 
-  real(kind=rek1)    :: re1
+  ! standard ways to get single floats:
+  integer, parameter :: spk1 = kind(0.0e0) 
+  real(kind=spk1)    :: re1
   real               :: re2
-  integer, parameter :: rek3 = selected_real_kind(  6,  37)
-  real(kind=rek3)    :: re3
+  integer, parameter :: spk3 = selected_real_kind(  6,  37)
+  real(kind=spk3)    :: re3
 
   ! standard ways to get real doubles:
   integer, parameter :: dpk1 = kind(1.0d0)
@@ -57,8 +69,8 @@ program real_kinds
   real(kind=dpk3)    :: dp3
 
   ! standard ways to get real quads:
-  integer, parameter :: qpk1 = selected_real_kind( 30, 291)
-  real(kind=qpk1)    :: qp1
+  integer, parameter :: qpk3 = selected_real_kind( 30, 291)
+  real(kind=qpk3)    :: qp3
 
   print *, 'Kind re1=', kind(re1)
   print *, 'kind re2=', kind(re2)
@@ -70,42 +82,42 @@ program real_kinds
   print *, 'kind dp3=', kind(dp3)
 
   print *
-  print *, 'kind qp1=', kind(qp1)
+  print *, 'kind qp3=', kind(qp3)
 
   print *
-  print *, 'Real (re1) Info'
-  print *, '   Number of significant digits       ', digits(re1)         
-  print *, '   Almost negligible compared to one  ', epsilon(re1)    
-  print *, '   Largest number                     ', huge(re1)       
-  print *, '   Maximum model exponent             ', maxexponent(re1) 
-  print *, '   Minimum model exponent             ', minexponent(re1) 
-  print *, '   Decimal precision                  ', precision(re1)  
-  print *, '   Base of the model                  ', radix(re1)      
-  print *, '   Decimal exponent range             ', range(re1)      
-  print *, '   Smallest positive number           ', tiny(re1)       
+  print *, 'Real (re3) Info'
+  print *, '   Number of significant digits       ', digits(re3)         
+  print *, '   Almost negligible compared to one  ', epsilon(re3)    
+  print *, '   Largest number                     ', huge(re3)       
+  print *, '   Maximum model exponent             ', maxexponent(re3) 
+  print *, '   Minimum model exponent             ', minexponent(re3) 
+  print *, '   Decimal precision                  ', precision(re3)  
+  print *, '   Base of the model                  ', radix(re3)      
+  print *, '   Decimal exponent range             ', range(re3)      
+  print *, '   Smallest positive number           ', tiny(re3)       
 
   print *
-  print *, 'Double (dp1) Info'
-  print *, '   Number of significant digits       ', digits(dp1)         
-  print *, '   Almost negligible compared to one  ', epsilon(dp1)    
-  print *, '   Largest number                     ', huge(dp1)       
-  print *, '   Maximum model exponent             ', maxexponent(dp1) 
-  print *, '   Minimum model exponent             ', minexponent(dp1) 
-  print *, '   Decimal precision                  ', precision(dp1)  
-  print *, '   Base of the model                  ', radix(dp1)      
-  print *, '   Decimal exponent range             ', range(dp1)      
-  print *, '   Smallest positive number           ', tiny(dp1)       
+  print *, 'Double (dp3) Info'
+  print *, '   Number of significant digits       ', digits(dp3)         
+  print *, '   Almost negligible compared to one  ', epsilon(dp3)    
+  print *, '   Largest number                     ', huge(dp3)       
+  print *, '   Maximum model exponent             ', maxexponent(dp3) 
+  print *, '   Minimum model exponent             ', minexponent(dp3) 
+  print *, '   Decimal precision                  ', precision(dp3)  
+  print *, '   Base of the model                  ', radix(dp3)      
+  print *, '   Decimal exponent range             ', range(dp3)      
+  print *, '   Smallest positive number           ', tiny(dp3)       
 
   print *
-  print *, 'Double (qp1) Info'
-  print *, '   Number of significant digits       ', digits(qp1)         
-  print *, '   Almost negligible compared to one  ', epsilon(qp1)    
-  print *, '   Largest number                     ', huge(qp1)       
-  print *, '   Maximum model exponent             ', maxexponent(qp1) 
-  print *, '   Minimum model exponent             ', minexponent(qp1) 
-  print *, '   Decimal precision                  ', precision(qp1)  
-  print *, '   Base of the model                  ', radix(qp1)      
-  print *, '   Decimal exponent range             ', range(qp1)      
-  print *, '   Smallest positive number           ', tiny(qp1)       
+  print *, 'Double (qp3) Info'
+  print *, '   Number of significant digits       ', digits(qp3)         
+  print *, '   Almost negligible compared to one  ', epsilon(qp3)    
+  print *, '   Largest number                     ', huge(qp3)       
+  print *, '   Maximum model exponent             ', maxexponent(qp3) 
+  print *, '   Minimum model exponent             ', minexponent(qp3) 
+  print *, '   Decimal precision                  ', precision(qp3)  
+  print *, '   Base of the model                  ', radix(qp3)      
+  print *, '   Decimal exponent range             ', range(qp3)      
+  print *, '   Smallest positive number           ', tiny(qp3)       
 
 end program real_kinds
