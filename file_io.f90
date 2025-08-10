@@ -73,8 +73,11 @@ program file_io
   !                   'SEQUENTIAL' - Sequential access (default)
   !                   'STREAM'     - Stream access is a combo of direct & sequential
   !                   'APPEND'     - Sequential access, but initial position is EOF
-  !   FORM=str ...... 'FORMATTED'   The Default for 'SEQUENTIAL'
-  !                   'UNFORMATTED' The Default for 'DIRECT'
+  !   ACTION=str .... 'READ' ......... Read
+  !                   'WRITE' ........ write
+  !                   'READWRITE' .... read/write (Default)
+  !   FORM=str ...... 'FORMATTED'   .. The Default for ACCESS=='SEQUENTIAL'
+  !                   'UNFORMATTED' .. The Default for ACCESS=='DIRECT'
   !   RECL=int ...... positive int representing record length
   !   BLANK=str ..... 'NULL' - blanks in numeric fields ignored (default)
   !                   'ZERO' - blanks are treated as zeros.
