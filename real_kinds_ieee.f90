@@ -5,7 +5,7 @@
 ! @author    Mitch Richling http://www.mitchr.me/
 ! @brief     Declaring IEEE-like variables.@EOL
 ! @keywords  real kind iso_fortran_env iso_c_binding double single IEEE
-! @std       F2003
+! @std       F2018
 ! @see       real_kinds.f90 real_kinds_2008.f90
 ! @copyright 
 !  @parblock
