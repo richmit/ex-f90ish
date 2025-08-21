@@ -1,3 +1,8 @@
 *~
+*.o
+*.obj
 *.exe
+.mod
+*__genmod.f90
+*__genmod.mod
 namelist_write.nml
